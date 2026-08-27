@@ -72,6 +72,7 @@ ssh tu_usuario@ip-del-vps
 
 git clone https://github.com/TU_USUARIO/hermes-ctf-setup.git
 cd hermes-ctf-setup
+chmod +x install.sh
 ./install.sh
 ```
 
