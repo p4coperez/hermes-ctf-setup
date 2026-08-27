@@ -127,3 +127,14 @@ web, troubleshooting), consulta
       comentarios o en `HERMES_PENTEST_SCOPE` de `env.example`.
 - [ ] `HERMES_WEBUI_PASSWORD` en tu `.env` real (no el example) es
       una contraseña fuerte, no la de ejemplo.
+---
+
+## 7. ⚖️ Descargo de responsabilidad
+
+Esta herramienta está pensada exclusivamente para **entornos de práctica autorizados** (CTFs, laboratorios propios, plataformas como HackTheBox o TryHackMe). El uso de estas herramientas contra sistemas sin autorización explícita es ilegal. El autor no se hace responsable del mal uso de este proyecto.
+
+---
+
+## 8. 📄 Licencia
+
+[MIT](https://choosealicense.com/licenses/mit/)
