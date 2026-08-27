@@ -1,0 +1,16 @@
+# Secretos y configuración local — NUNCA subir esto al repo
+.env
+
+# Configuraciones VPN y credenciales (contienen certificados/claves)
+vpn/*
+!vpn/.gitkeep
+
+# Datos de trabajo generados por el agente (recon, exploits, logs)
+workspace/*
+!workspace/.gitkeep
+
+# Basura habitual
+*.log
+__pycache__/
+*.pyc
+.DS_Store
