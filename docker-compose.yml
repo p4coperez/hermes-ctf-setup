@@ -15,7 +15,7 @@ services:
     tty: true
     init: true
     command: ["hermes", "gateway", "run"]
-    
+
 
     environment:
       - HERMES_AUTH_TOKEN=${HERMES_AUTH_TOKEN}
@@ -39,7 +39,7 @@ services:
       - hermes_data:/root/.hermes
       # Carpeta de trabajo donde el agente ejecuta código/CTFs
       # aislada del resto del sistema de archivos del host
-      - ./workspace:/workspace
+      - ./workspace:/opt/data/workspace
       # Coloca aquí tu .ovpn de HTB/THM (uno solo, o el entrypoint
       # coge el primero que encuentre)
       - ./vpn:/vpn
