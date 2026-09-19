@@ -37,5 +37,15 @@ else
     echo "[entrypoint] No se encontró ningún .ovpn en /vpn — arrancando sin VPN."
 fi
 
-# Arranca Hermes Agent normalmente
-exec hermes "$@"
+
+# Si se pasaron argumentos al contenedor ($@), ejecutarlos. Si no, esperar el proceso en primer plano.
+if [ $# -gt 0 ]; then
+    echo "[entrypoint] Ejecutando Hermes Gateway: $@"
+    exec "$@"
+else
+    # Mantiene el contenedor vivo escuchando las tareas en segundo plano
+    echo "[entrypoint] Contenedor listo y escuchando eventos."
+    wait -n
+fi
+
+
