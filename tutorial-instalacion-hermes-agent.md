@@ -251,7 +251,6 @@ el agente sin tener que entrar por SSH cada vez.
 3. En tu `.env`:
 
    ```
-   HERMES_ENABLE_TELEGRAM=true
    TELEGRAM_BOT_TOKEN=el_token_que_te_dio_botfather
    TELEGRAM_ALLOWED_USER_IDS=tu_user_id
    ```
