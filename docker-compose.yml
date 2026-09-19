@@ -5,8 +5,24 @@ services:
       context: .
       dockerfile: Dockerfile
     image: hermes-agent-ctf:latest
-    container_name: hermes-agent
+
+    env_file:
+      - .env
+  
+    container_name: ${HERMES_PROFILE:-hermes-agent}
     restart: unless-stopped
+    stdin_open: true
+    tty: true
+    init: true
+    command: ["hermes", "gateway", "run"]
+
+    environment:
+      - HERMES_AUTH_TOKEN=${HERMES_AUTH_TOKEN}
+      - HERMES_MODEL=${HERMES_MODEL} # Compatibilidad con OpenRouter
+      - OPENROUTER_API_KEY=${OPENROUTER_API_KEY} 
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+      - TELEGRAM_ALLOWED_USERS=${TELEGRAM_ALLOWED_USER_IDS}
+      
 
     # --- Límites de recursos (VPS de 2 GB RAM) ---
     mem_limit: 1.5g          # techo duro de memoria del contenedor
@@ -14,8 +30,8 @@ services:
     cpus: "1.5"              # deja algo de CPU libre para el host
     pids_limit: 512          # evita fork-bombs accidentales de scripts
 
-    env_file:
-      - .env
+    ports:
+      - "127.0.0.1:8642:8642"
 
     volumes:
       # Estado persistente del agente (memoria, skills, logs, config)
@@ -26,13 +42,6 @@ services:
       # Coloca aquí tu .ovpn de HTB/THM (uno solo, o el entrypoint
       # coge el primero que encuentre)
       - ./vpn:/vpn
-
-    # Portal web de Hermes: expuesto SOLO en localhost del VPS.
-    # Para acceder desde tu PC, usa un túnel SSH (ver tutorial paso 7b):
-    #   ssh -L 8420:localhost:8420 usuario@tu-vps
-    # y luego abre http://localhost:8420 en tu navegador local.
-    ports:
-      - "127.0.0.1:8420:8420"
 
     # Seguridad: privilegios mínimos, con la excepción necesaria
     # para levantar el túnel OpenVPN (tun/tap + rutas)

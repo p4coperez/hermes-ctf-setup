@@ -117,13 +117,14 @@ if [ ! -f .env ]; then
 
     # Modo interactivo: si hay terminal, pregunta la API key directamente
     if [ -t 0 ]; then
-        read -rp "Introduce tu ANTHROPIC_API_KEY (o pulsa Enter para editarlo tú luego): " API_KEY
-        if [ -n "${API_KEY:-}" ]; then
-            sed -i "s|^ANTHROPIC_API_KEY=.*|ANTHROPIC_API_KEY=${API_KEY}|" .env
+        read -rp "Introduce tu LLM_API_KEY (o pulsa Enter para editarlo tú luego): " LLM_API_KEY
+        if [ -n "${LLM_API_KEY:-}" ]; then
+            sed -i "s|^LLM_API_KEY=.*|LLM_API_KEY=${LLM_API_KEY}|" .env
             log "API key guardada en .env."
         else
             warn "Recuerda editar .env manualmente antes de que el agente use la API."
         fi
+
     else
         warn "Ejecución no interactiva detectada. Edita .env manualmente: nano .env"
     fi
@@ -167,7 +168,7 @@ echo "  Entrar a la CLI:     docker exec -it hermes-agent hermes chat"
 echo "  Entrar a bash:       docker exec -it hermes-agent bash"
 echo "  Portal web (túnel):  ssh -L 8420:localhost:8420 $(whoami)@TU_IP_DEL_VPS"
 echo
-if ! grep -q "^ANTHROPIC_API_KEY=sk-ant-" .env 2>/dev/null; then
+if ! grep -q "^LLM_API_KEY=sk-ant-" .env 2>/dev/null; then
     warn "No olvides comprobar que .env tiene una API key válida:  nano .env"
     warn "y luego reiniciar con:  $COMPOSE_CMD up -d --force-recreate"
 fi
