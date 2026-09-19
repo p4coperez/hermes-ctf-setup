@@ -46,12 +46,12 @@ $SUDO apt install -y -qq ca-certificates curl gnupg git
 # --------------------------------------------------------------
 # 2. Swap (solo si no existe ya alguna)
 # --------------------------------------------------------------
-if [ "$(swapon --show | wc -l)" -eq 0 ]; then
+if [ "$(/sbin/swapon --show | wc -l)" -eq 0 ]; then
     log "No hay swap activa. Creando 2G de swap..."
     $SUDO fallocate -l 2G /swapfile
     $SUDO chmod 600 /swapfile
-    $SUDO mkswap /swapfile >/dev/null
-    $SUDO swapon /swapfile
+    $SUDO /sbin/mkswap /swapfile >/dev/null
+    $SUDO /sbin/swapon /swapfile
     if ! grep -q "/swapfile" /etc/fstab; then
         echo '/swapfile none swap sw 0 0' | $SUDO tee -a /etc/fstab >/dev/null
     fi
@@ -84,6 +84,7 @@ fi
 if [ -n "$SUDO" ] && ! groups "$USER" | grep -q docker; then
     log "Añadiendo $USER al grupo docker (necesitarás re-loguear para que aplique sin sudo)..."
     $SUDO usermod -aG docker "$USER" || true
+    newgrp docker
 fi
 
 DOCKER_CMD="docker"
