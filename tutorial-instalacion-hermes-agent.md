@@ -275,6 +275,12 @@ El portal web de Hermes queda expuesto **solo en `127.0.0.1:8420`
 del propio VPS** (así está configurado en `docker-compose.yml`) —
 no es accesible directamente desde internet, por seguridad.
 
+Para acceder a Hermes por la web:
+
+```bash
+bash start_hermes_chat.sh
+```
+
 Para acceder desde tu ordenador, abre un túnel SSH:
 
 ```bash
