@@ -98,7 +98,7 @@ COMPOSE_CMD="$DOCKER_CMD compose"
 # --------------------------------------------------------------
 log "Preparando estructura de carpetas..."
 mkdir -p workspace vpn
-chmod 777 workspace # permisos amplios para que Docker pueda escribir
+chmod 777 workspace vpn # permisos amplios para que Docker pueda escribir
 
 # --------------------------------------------------------------
 # 5. Archivo .env
