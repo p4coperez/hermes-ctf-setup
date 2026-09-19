@@ -15,6 +15,7 @@ services:
     tty: true
     init: true
     command: ["hermes", "gateway", "run"]
+    
 
     environment:
       - HERMES_AUTH_TOKEN=${HERMES_AUTH_TOKEN}

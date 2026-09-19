@@ -288,15 +288,9 @@ Deja esa terminal abierta y, en tu navegador local, entra a:
 http://localhost:8420
 ```
 
-Usa el usuario/contraseña que definiste en `.env`
-(`HERMES_WEBUI_USER` / `HERMES_WEBUI_PASSWORD`). Desde ahí puedes
-gestionar skills instalados, ver el historial de conversaciones,
-ajustar el perfil del agente y revisar logs de ejecución de forma
-más visual que por CLI.
+Usa la contraseña que definiste en `.env`
+(`HERMES_WEBUI_PASSWORD`). Se usa para acceder a la API del agente hermes
 
-> Si prefieres no depender de un túnel SSH manual cada vez, se puede
-> poner un reverse proxy (Caddy o Nginx) delante con HTTPS y
-> autenticación — dímelo si quieres que te lo prepare.
 
 ---
 
@@ -305,7 +299,7 @@ más visual que por CLI.
 Dentro de la sesión `hermes chat`, prueba algo simple primero:
 
 ```
-Haz ping a 10.10.10.5 y dime si respondes, usando el terminal.
+Haz ping a 10.10.10.5 y dime si responde, usando el terminal.
 ```
 
 Si responde correctamente, ya tienes conectividad completa:

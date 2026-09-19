@@ -15,6 +15,7 @@ GitHub y clonado en el VPS.
 ```
 hermes-ctf-setup/
 ├── install.sh              # Script de instalación en una sola ejecución
+├── start_hermes_chat.sh    # Script de instalacion del chat por el puerto web+ssh
 ├── Dockerfile               # Imagen: Hermes Agent + toolkit + OpenVPN
 ├── entrypoint-vpn.sh         # Levanta el túnel VPN antes de arrancar Hermes
 ├── docker-compose.yml        # Orquestación, límites de RAM/CPU, permisos de red
@@ -89,7 +90,7 @@ key:
    terminal (si ejecutas en modo interactivo).
 6. Avisa si no hay ningún `.ovpn` en `vpn/` (puedes añadirlo después
    sin problema).
-7. Construye la imagen Docker (Hermes Agent + toolkit + OpenVPN).
+7. Construye la imagen Docker (Hermes Agent Gateway + toolkit + OpenVPN).
 8. Levanta el contenedor con `docker compose up -d`.
 9. Imprime un resumen con los comandos útiles para empezar a usarlo.
 
@@ -97,6 +98,20 @@ Al terminar, ya puedes hacer:
 
 ```bash
 docker exec -it hermes-agent hermes chat
+```
+
+Pero no podemos conectarnos remotamente por ssh, luego:
+
+El script `start_hermes_chat.sh` hace la instalación de ttyd para poder acceder desde un puerto externo definido + ssh forwarding.
+
+1. Actualiza el sistema (`apt update/upgrade`).
+2. Comprueba que no se haya instalado ya ttyd
+3. Se instala ttyd: compilando la ultima version estable
+4. Se asigna el puerto donde va a abrir la ttyd
+5. Se ejecuta el comando:
+
+```bash
+exec ttyd -i 127.0.0.1 -p 8420 docker exec -i hermes-agent hermes chat
 ```
 
 ## 4. Actualizaciones futuras
