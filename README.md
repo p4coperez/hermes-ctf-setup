@@ -114,6 +114,9 @@ El script `start_hermes_chat.sh` hace la instalación de ttyd para poder acceder
 exec ttyd -i 127.0.0.1 -p 8420 docker exec -i hermes-agent hermes chat
 ```
 
+![Hermes Agent conectado por ttyd + ssh](ttyd_hermes_localhost.png)
+
+
 ## 4. Actualizaciones futuras
 
 Cuando cambies algo en el repo (por ejemplo, añadas una herramienta
